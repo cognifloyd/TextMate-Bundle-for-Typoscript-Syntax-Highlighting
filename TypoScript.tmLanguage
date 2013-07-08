@@ -4,7 +4,7 @@
 <dict>
 	<key>fileTypes</key>
 	<array>
-		<string>ts</string>
+		<string>ts2</string>
 	</array>
 	<key>foldingStartMarker</key>
 	<string>/\*\*|\{\s*$</string>
@@ -18,29 +18,6 @@
 	<string>TypoScript</string>
 	<key>patterns</key>
 	<array>
-		<dict>
-			<key>captures</key>
-			<dict>
-				<key>0</key>
-				<dict>
-					<key>name</key>
-					<string>support.function.delete.typoscript</string>
-				</dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>support.function.delete.typoscript</string>
-				</dict>
-			</dict>
-			<key>comment</key>
-			<string>deleting/clearing of a typoscript object</string>
-			<key>contentName</key>
-			<string>support.function.delete.typoscript</string>
-			<key>match</key>
-			<string>^.[^=]*(&gt;)</string>
-			<key>name</key>
-			<string>support.function.delete.typoscript</string>
-		</dict>
 		<dict>
 			<key>match</key>
 			<string>\s*#.*</string>
@@ -65,7 +42,7 @@
 				</dict>
 			</dict>
 			<key>comment</key>
-			<string>one typoscript object copied to another</string>
+			<string>Prototype extension</string>
 			<key>end</key>
 			<string>(.+$)</string>
 			<key>endCaptures</key>
@@ -73,7 +50,7 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>support.function.copy.typoscript</string>
+					<string>support.function.reference.prototype</string>
 				</dict>
 			</dict>
 			<key>patterns</key>
@@ -131,11 +108,11 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>\(</string>
+			<string>('|")</string>
 			<key>comment</key>
-			<string>multiline value</string>
+			<string>escaped string</string>
 			<key>end</key>
-			<string>\)</string>
+			<string>('|")</string>
 			<key>name</key>
 			<string>support.other.multiline</string>
 			<key>patterns</key>
@@ -156,28 +133,11 @@
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#typo_stdWrap_all</string>
-		</dict>
-		<dict>
-			<key>include</key>
 			<string>#typo_defined_properties</string>
 		</dict>
 		<dict>
 			<key>include</key>
 			<string>#typo_constant</string>
-		</dict>
-		<dict>
-			<key>begin</key>
-			<string>_CSS_DEFAULT_STYLE \(</string>
-			<key>end</key>
-			<string>^\)</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>include</key>
-					<string>source.css</string>
-				</dict>
-			</array>
 		</dict>
 	</array>
 	<key>repository</key>
@@ -194,102 +154,18 @@
 			<key>comment</key>
 			<string>all content objects and things defined by typo3 that sit on the right side of the equal sign</string>
 			<key>match</key>
-			<string>(_CSS_DEFAULT_STYLE|_DEFAULT_PI_VARS|_GIFBUILDER|_LOCAL_LANG|CARRAY|CASE|CLEARGIF|COA|COA_INT|COBJ_ARRAY|COLUMNS|CONFIG|CONSTANTS|CONTENT|CTABLE|CType|DB|DOCUMENT_BODY|EDITPANEL|EFFECT|FE_DATA|FE_TABLE|FEData|FILE|FORM|FRAME|FRAMESET|GIFBUILDER|global|globalString|globalVar|GMENU|GMENU_FOLDOUT|GMENU_LAYERS|GP|HMENU|HRULER|HTML|IENV|IMAGE|IMG_RESOURCE|IMGMENU|IMGMENUITEM|IMGTEXT|INCLUDE_TYPOSCRIPT|includeLibs|JSMENU|JSMENUITEM|LIT|LOAD_REGISTER|META|MULTIMEDIA|OTABLE|PAGE|PAGE_TARGET|PAGE_TSCONFIG_ID|PAGE_TSCONFIG_IDLIST|PAGE_TSCONFIG_STR|PHP_SCRIPT|PHP_SCRIPT_EXT|PHP_SCRIPT_INT|RECORDS|REMOTE_ADDR|RESTORE_REGISTER|RTE|SEARCHRESULT|SHARED|TCAdefaults|TCEFORM|TCEMAIN|TEMPLATE|TEXT|TMENU|TMENU_LAYERS|TMENUITEM|TSFE|USER|USER_INT|userFunc)\b</string>
+			<string>(TYPO3\.TypoScript:Case|TYPO3\.TypoScript:Collection|TYPO3\.TypoScript:Template|TYPO3\.TypoScript:Matcher|TYPO3\.TypoScript:Array|TYPO3\.TypoScript:Value||TYPO3\.Neos:Template|TYPO3\.Neos:Breadcrumb|TYPO3\.Neos:Menu|TYPO3\.Neos:MultiColumn|TYPO3\.Neos:Page|TYPO3\.Neos:Shortcut|TYPO3\.Neos:Plugin|TYPO3\.Neos:ContentCollection|TYPO3\.Neos:ContentCase||TYPO3\.Neos\.NodeTypes:Headline|TYPO3\.Neos\.NodeTypes:Html|TYPO3\.Neos\.NodeTypes:Image|TYPO3\.Neos\.NodeTypes:Menu|TYPO3\.Neos\.NodeTypes:Text|TYPO3\.Neos\.NodeTypes:TextWithImage|TYPO3\.Neos\.NodeTypes:TwoColumn|TYPO3\.Neos\.NodeTypes:ThreeColumn|TYPO3\.Neos\.NodeTypes:FourColumn||Page|Template|Breadcrumb|ContentCollection|Menu|Case|ContentCase)\b</string>
 			<key>name</key>
 			<string>support.constant.cobject.typoscript</string>
 		</dict>
 		<key>typo_defined_properties</key>
 		<dict>
 			<key>comment</key>
-			<string>all misc keywords and stdWrap properties, etc</string>
+			<string>all basic properties</string>
 			<key>match</key>
-			<string>\b(_offset|absRefPrefix|accessibility|accessKey|addAttributes|addExtUrlsAndShortCuts|addItems|additionalHeaders|additionalParams|addQueryString|adjustItemsH|adjustSubItemsH|adminPanelStyles|after|afterImg|afterImgLink|afterImgTagParams|afterROImg|afterWrap|align|allow|allowCaching|allowedAttribs|allowedClasses|allowedCols|allowEdit|allowedNewTables|allowNew|allowTags|allowTVlisting|allStdWrap|allWrap|alternateBgColors|alternativeSortingField|alternativeTempPath|altImgResource|altLabels|altTarget|altText|altUrl|altWrap|always|alwaysActivePIDlist|alwaysLink|andWhere|angle|antiAlias|applyTotalH|applyTotalW|archive|archiveTypoLink|arrayReturnMode|arrowACT|arrowImgParams|arrowNO|ATagAfterWrap|ATagBeforeWrap|ATagParams|ATagTitle|attribute|autoInsertPID|autoLevels|autonumber|backColor|background|badMess|baseURL|before|beforeImg|beforeImgLink|beforeImgTagParams|beforeROImg|beforeWrap|begin|beLoginLinkIPList|beLoginLinkIPList_login|beLoginLinkIPList_logout|bgCol|bgImg|blankStrEqFalse|blur|bm|bodyTag|bodyTagAdd|bodyTagCObject|bodyTagMargins|bodytext|border|borderCol|bordersWithin|borderThick|bottomBackColor|bottomContent|bottomHeight|bottomImg|bottomImg_mask|bullet|bulletlist|cache_clearAtMidnight|cache_period|caption|caption_stdWrap|captionAlign|captionHeader|captionSplit|casesensitiveComp|cellpadding|cellspacing|centerImgACT|centerImgCUR|centerImgNO|centerLeftImgACT|centerLeftImgCUR|centerLeftImgNO|centerRightImgACT|centerRightImgCUR|centerRightImgNO|charcoal|charMapConfig|check|class|classesAnchor|classesCharacter|classesImage|classesParagraph|clear|clearCache|clearCache_disable|clearCache_pageGrandParent|clearCache_pageSiblingChildren|clearCacheCmd|clearCacheLevels|clearCacheOfPages|clickTitleMode|clipboardNumberPads|cMargins|cObjNum|collapse|color|color1|color2|color3|color4|colors|colour|colPos_list|colRelations|cols|colSpace|comment_auto|commentWrap|compensateFieldWidth|compX|compY|conf|constants|content_from_pid_allowOutsideDomain|count_HMENU_MENUOBJ|count_menuItems|count_MENUOBJ|create|CSS_inlineStyle|curUid|cWidth|date_stdWrap|datePrefix|debugFunc|debugItemConf|debugRenumberedObject|default|defaultAlign|defaultCmd|defaultHeaderType|defaultOutput|defaultType|delete|denyTags|depth|DESC|dimensions|directionLeft|directionUp|disableAdvanced|disableAllHeaderCode|disableAltText|disableBigButtons|disableCacheSelector|disableCharsetHeader|disabled|disableDocSelector|disableHideAtCopy|disableIconLinkToContextmenu|disableNewContentElementWizard|disableNoMatchingValueElement|disablePageExternalUrl|disablePrefixComment|disablePrependAtCopy|disableSearchBox|disableSingleTableView|displayActiveOnLoad|displayContent|displayFieldIcons|displayIcons|displayMessages|displayQueries|displayRecord|displayTimes|distributeX|distributeY|DIV|doctype|doctypeSwitch|doktype|doNotLinkIt|doNotShowLink|doNotStripHTML|dontCheckPid|dontFollowMouse|dontHideOnMouseUp|dontLinkIfSubmenu|dontWrapInTable|doublePostCheck|dWorkArea|edge|edit_docModuleUplaod|editFieldsAtATime|editFormsOnPage|editIcons|editNoPopup|elements|emailMess|emboss|enable|encapsLinesStdWrap|encapsTagList|entryLevel|equalH|everybody|excludeDoktypes|excludeUidList|expAll|expand|explode|ext|externalBlocks|extTarget|face|fe_adminLib|fieldOrder|fields|fieldWrap|file|file1|file2|file3|file4|file5|filelist|firstLabel|firstLabelGeneral|fixAttrib|flip|flop|foldSpeed|foldTimer|fontColor|fontFile|fontOffset|fontSize|fontSizeMultiplicator|forceTemplateParsing|forceTypeValue|format|frame|frameReloadIfNotInFrameset|frameSet|freezeMouseover|ftu|function|gamma|gapBgCol|gapLineCol|gapLineThickness|gapWidth|get|getBorder|getLeft|getRight|globalNesting|goodMess|gray|group|groupBy|groupid|header|headerComment|headerData|headerSpace|headTag|height|hidden|hiddenFields|hide|hideButCreateMap|hideMenuTimer|hideMenuWhenNotOver|hidePStyleItems|highColor|history|hover|hoverStyle|HTMLparser_tags|htmlTag_dir|htmlTag_langKey|htmlTag_setParams|http|icon|icon_image_ext_list|icon_link|iconCObject|image|image_compression|image_effects|image_frames|imageLinkWrap|imagePath|images|imageWrapIfAny|imgList|imgMap|imgMapExtras|imgMax|imgNameNotRandom|imgNamePrefix|imgObjNum|imgParams|imgPath|imgStart|import|inc|includeCSS|includeLibrary|includeNotInMenu|incT3Lib_htmlmail|index|index_descrLgd|index_enable|index_externals|inlineStyle2TempFile|innerStdWrap|innerStdWrap_all|input|inputLevels|insertClassesFromRTE|insertDmailerBoundaries|intensity|intTarget|invert|IProcFunc|itemArrayProcFunc|itemH|items|itemsProcFunc|iterations|join|JSWindow|JSwindow_params|jumpurl|jumpUrl|jumpurl_enable|jumpurl_mailto_disable|jumpUrl_transferSession|keep|keepEntries|keepNonMatchedTags|key|label|labelStdWrap|labelWrap|language|language_alt|languageField|layer_menu_id|layerStyle|left|leftImgACT|leftImgCUR|leftImgNO|leftjoin|leftOffset|levels|leveluid|limit|line|lineColor|lineThickness|linkPrefix|linkTitleToSelf|linkVars|linkWrap|listOnlyInSingleTableView|lm|locale_all|localNesting|locationData|lockFilePath|lockPosition|lockPosition_addSelf|lockPosition_adjust|longdescURL|lowColor|lower|LR|mailto|main|mainScript|makelinks|markerWrap|mask|max|maxAge|maxAgeDays|maxChars|maxH|maxHeigh|maxItems|maxW|maxWidth|maxWInText|menuBackColor|menuHeight|menuName|menuOffset|menuWidth|message_page_is_being_generated|message_preview|meta|metaCharset|method|min|minH|minItems|minW|mode|MP_defaults|MP_disableTypolinkClosestMPvalue|MP_mapRootPoints|name|nesting|netprintApplicationLink|newPageWiz|newRecordFromTable|newWindow|newWizards|next|niceText|no_cache|no_search|noAttrib|noBlur|noCols|noCreateRecordsLink|noLink|noLinkUnderline|noMatchingValue_label|nonCachedSubst|nonTypoTagStdWrap|nonTypoTagUserFunc|nonWrappedTag|noOrderBy|noPageTitle|noRows|noScaleUp|noStretchAndMarginCells|notification_email_charset|notification_email_encoding|notification_email_urlmode|noTrimWrap|noValueInsert|obj|offset|onlyCurrentPid|opacity|orderBy|outline|outputLevels|overrideAttribs|overrideEdit|overrideId|overrideWithExtension|pageFrameObj|pageGenScript|pageTitleFirst|parameter|params|parser|password|path|permissions|pid_list|pidInList|pixelSpaceFontSizeRef|plaintextLib|plainTextStdWrap|postLineBlanks|postLineChar|postLineLen|preBlanks|prefix|prefixLocalAnchors|prefixRelPathWith|preLineBlanks|preLineChar|preLineLen|preserveEntities|prev|previewBorder|prevnextToSection|printheader|proc|processScript|properties|protect|protectLvar|publish_levels|QEisDefault|quality|radio|radioWrap|range|recipient|recursive|redirect|reduceColors|register|relativeToParentLayer|relativeToTriggerItem|relPathPrefix|remap|remapTag|removeDefaultJS|removeIfEquals|removeIfFalse|removeItems|removeObjectsOfDummy|removePrependedNumbers|removeTags|removeWrapping|renderCharset|renderWrap|reset|resources|resultObj|returnLast|rightImgACT|rightImgCUR|rightImgNO|rightjoin|rm|rmTagIfNoAttrib|RO_chBgColor|rotate|rows|rowSpace|RTEfullScreenWidth|rules|sample|saveDocNew|secondRow|section|sectionIndex|select|select_key|selectFields|separator|set|setfixed|setFixedHeight|setFixedWidth|setJS_mouseOver|setJS_openPic|setOnly|shadow|sharpen|shear|short|shortcut|shortcutFrame|shortcutIcon|show|showAccessRestrictedPages|showActive|showClipControlPanelsDespiteOfCMlayers|showFirst|showHiddenPages|showHiddenRecords|showPageIdWithTitle|showTagFreeClasses|simulateDate|simulateStaticDocuments|simulateStaticDocuments_addTitle|simulateStaticDocuments_dontRedirectPathInfoError|simulateStaticDocuments_noTypeIfNoTitle|simulateStaticDocuments_pEnc|simulateStaticDocuments_pEnc_onlyP|simulateUserGroup|singlePid|site_author|site_keywords|sitetitle|siteUrl|size|smallFormFields|solarize|sorting|source|spaceBelowAbove|spaceLeft|spaceRight|spacing|spamProtectEmailAddresses|spamProtectEmailAddresses_atSubst|spamProtectEmailAddresses_lastDotSubst|special|splitChar|splitRendering|src|stayFolded|stdheader|stdWrap2|styles|stylesheet|submenuObjSuffixes|subMenuOffset|submit|subst_elementUid|substMarksSeparately|swirl|sword|sword_noMixedCase|SWORD_PARAMS|sword_standAlone|sys_language_mode|sys_language_overlay|sys_language_softMergeIfNotBlank|sys_language_uid|table|tableCellColor|tableParams|tables|tableStdWrap|tableStyle|tableWidth|tags|target|TDparams|templateContent|templateFile|text|textarea|textMargin|textMargin_outOfText|textMaxLength|textObjNum|textPos|thickness|tile|time_stdWrap|tipafriendLib|title|titleTagFunction|titleText|tm|token|topOffset|totalWidth|transparentBackground|transparentColor|tsdebug_tree|type|typeNum|types|typolinkCheckRootline|uidInList|unset|uploads|upper|useCacheHash|useLargestItemX|useLargestItemY|user|user_task|userdefined|userfunction|userid|userIdColumn|USERNAME_substToken|userProc|value|valueArray|wave|where|width|wiz|wordSpacing|workArea|wrap|wrap1|wrap2|wrap3|wrapAfterTags|wrapFieldName|wrapItemAndSub|wrapNonWrappedLines|wraps|xhtml_cleaning|xmlprologue|xPosOffset|yPosOffset|admPanel|alt_print|browser|cache|CHECK|cObj|COMMENT|config|content|CSS_inlineStyle|dataArray|dayofmonth|dayofweek|device|displayList|displaySingle|dynCSS|edit|folder|folderTree|foldoutMenu|Functions|gmenu_foldout|gmenu_layers|hostname|hour|imgList|imgResource|imgText|info|IP|jsmenu|LABEL|layout|lib|loginUser|marks|minute|mod|month|noResultObj|options|page|pageTree|PIDinRootline|PIDitemDisplay|PIDupinRootline|plugin|postform|postform_newThread|preview|publish|RADIO|renderObj|REQ|RTE|RTE_compliant|select|setup|stat|stat_apache|stat_apache_logfile|stat_apache_noHost|stat_apache_notExtended|stat_apache_pagenames|stat_excludeBEuserHits|stat_excludeIPList|stat_mysql|stat_titleLen|stat_typeNumList|stdWrap|subparts|system|template|treeLevel|tsdebug|url|useragent|userFunc|version|workOnSubpart)\b</string>
+			<string>\b(templatePath|startingPoint|entryLevel|maxLevels)\b</string>
 			<key>name</key>
 			<string>variable.parameter</string>
-		</dict>
-		<key>typo_menu_item</key>
-		<dict>
-			<key>begin</key>
-			<string>.+\.(NO|ACT|RO)\s*{</string>
-			<key>end</key>
-			<string>}</string>
-			<key>name</key>
-			<string>meta.menuitem.typoscript</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>include</key>
-					<string>$self</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#typo_objects_accepting_stdWrap</string>
-				</dict>
-			</array>
-		</dict>
-		<key>typo_objects_accepting_stdWrap</key>
-		<dict>
-			<key>comment</key>
-			<string>properties which allow stdWrap on the next level</string>
-			<key>match</key>
-			<string>\b(setCurrent|filelist|override|ifEmpty|ifBlank|stdWrap|innerWrap|innerWrap2|wrapAlign|spaceBefore|spaceAfter|outerWrap|stdWrap)\b</string>
-			<key>name</key>
-			<string>support.function.stdWrap.typoscript</string>
-		</dict>
-		<key>typo_stdWrap_all</key>
-		<dict>
-			<key>name</key>
-			<string>support.function.typoscript</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>include</key>
-					<string>#typo_objects_accepting_stdWrap</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#typo_stdWrap_contentSupplying</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#typo_stdWrap_overrideConditions</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#typo_stdWrap_conditions</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#typo_stdWrap_parseData</string>
-				</dict>
-			</array>
-		</dict>
-		<key>typo_stdWrap_conditions</key>
-		<dict>
-			<key>comment</key>
-			<string>properties for if</string>
-			<key>match</key>
-			<string>\b(isTrue|isFalse|isPositive|isGreaterThan|isLessThan|equals|isInList|value|negate|directReturn)\b</string>
-			<key>name</key>
-			<string>support.function.conditions.typoscript</string>
-		</dict>
-		<key>typo_stdWrap_contentSupplying</key>
-		<dict>
-			<key>comment</key>
-			<string>content supplying stdWrap properties</string>
-			<key>match</key>
-			<string>\b(current|setContentToCurrent|setCurrent|lang|data|field|cObject|numRows|filelist|preUserFunc)\b</string>
-			<key>name</key>
-			<string>support.function.contentSupplying.typoscript</string>
-		</dict>
-		<key>typo_stdWrap_overrideConditions</key>
-		<dict>
-			<key>comment</key>
-			<string>override conditions for stdWrap</string>
-			<key>match</key>
-			<string>\b(override|preIfEmptyListNum|ifEmpty|ifBlank|listNum|trim|stdWrap|required|if|fieldRequired)\b</string>
-			<key>name</key>
-			<string>support.function.override.typoscript</string>
 		</dict>
 		<key>typo_stdWrap_parseData</key>
 		<dict>
@@ -303,14 +179,14 @@
 		<key>typo_top_level_objects</key>
 		<dict>
 			<key>match</key>
-			<string>\b(config|lib|styles|(plugin.tx_\w*)|temp|config|page|tt_\w*)\b</string>
+			<string>\b(root|page)\b</string>
 			<key>name</key>
 			<string>variable.language.top_level.typoscript</string>
 		</dict>
 	</dict>
 	<key>scopeName</key>
-	<string>source.typoscript</string>
+	<string>source.typoscript2</string>
 	<key>uuid</key>
-	<string>F7EFE2F4-63FC-4E32-AC22-C03EBA0929C7</string>
+	<string>21270492-e7f0-11e2-a247-26e750c8c401</string>
 </dict>
 </plist>
